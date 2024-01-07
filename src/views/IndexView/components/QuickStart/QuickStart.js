@@ -46,8 +46,8 @@ const QuickStart = ({ className, ...rest }) => {
   });
 
   const docsButton = (
-    <Button size="large" variant="contained" color="primary" component="a" href="https://gleam.io/F2Hsu/axie-infinity-giveaway-biweekly">
-      Bi-Weekly Giveaway
+    <Button size="large" variant="contained" color="primary" component="a" href="https://twitter.com/search?q=%23chuckfrescogiveaway&src=typed_query&f=live">
+      Giveaways
     </Button>
   );
 
@@ -71,8 +71,8 @@ const QuickStart = ({ className, ...rest }) => {
             <Grid item xs={12} md={5} data-aos={'fade-right'}>
               <SectionHeader
                 id="Giveaway"
-                title="Axie Scholarship Giveaways"
-                subtitle="The Axie Giveaway is hosted bi-weekly to give back to the community for the support. We select a winner from our Twitch stream LIVE every other week. Check in regularly for more chances to win!"
+                title="Axie Giveaways"
+                subtitle="The Axie Giveaway is hosted monthly to give back to the community for the support. We select a winner from our Twitter. Check in regularly on Twitter for more chances to win! #chuckfrescogiveaway"
                 ctaGroup={[docsButton]}
                 align={isMd ? 'left' : 'center'}
                 disableGutter

@@ -30,7 +30,7 @@ const Partners = props => {
         <Grid item xs={12} md={6} >
           <SectionHeader
             title="Who is Chuck Fresco?"
-            subtitle="Chuck Fresco is an American Axie Infinity player. He started his Axie journey February 2018 rolling his first Axies on stream. Winner of multiple championships and awards, Chuck continues to make content and tools to help the Axie Community."
+            subtitle="Chuck Fresco, the American Axie Infinity player who embarked on his journey in February 2018. Since then, he has not only clinched multiple championships and awards but has also dedicated himself to creating valuable content and tools for the Axie community. A true visionary in the Web3 realm, Chuck Fresco continues to lead and inspire"
             fadeUp
             disableGutter
 

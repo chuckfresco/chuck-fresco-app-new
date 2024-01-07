@@ -7,17 +7,27 @@ import {
   TextField,
   Button,
   Divider,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  Avatar,
 } from '@material-ui/core';
+
 import { Image } from 'components/atoms';
 import { SectionHeader } from 'components/molecules';
 import { Section } from 'components/organisms';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    height: '100%',
     width: '100%',
     position: 'relative',
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100vh', // Set the minimum height to fill the viewport
   },
+
+  
   section: {
     [theme.breakpoints.down('sm')]: {
       paddingTop: 0,
@@ -26,6 +36,7 @@ const useStyles = makeStyles(theme => ({
   wrapper: {
     display: 'flex',
     flexDirection: 'column',
+    flex: 1, // Let this container take all available vertical space
     [theme.breakpoints.up('md')]: {
       flexDirection: 'row',
       justifyContent: 'flex-end',
@@ -47,7 +58,6 @@ const useStyles = makeStyles(theme => ({
       left: 0,
       width: '47vw',
       maxWidth: 740,
-      height: '100%',
       marginLeft: 0,
       marginRight: 0,
       marginBottom: 0,
@@ -55,11 +65,10 @@ const useStyles = makeStyles(theme => ({
   },
   image: {
     width: '100%',
-    height: 300,
+    height: 'auto',
     objectFit: 'cover',
     [theme.breakpoints.up('md')]: {
       maxWidth: '100%',
-      height: '100%',
     },
   },
   content: {
@@ -69,6 +78,10 @@ const useStyles = makeStyles(theme => ({
       flex: '0 0 50%',
       maxWidth: '50%',
     },
+  },
+  divider: {
+    marginTop: 'auto', // Push the divider to the bottom
+    marginBottom: 0, // Remove the default margin from the divider
   },
 }));
 
@@ -86,7 +99,7 @@ const ContactPageCover = () => {
         <div className={classes.wrapper}>
           <div className={classes.cover}>
             <Image
-              src="https://assets.maccarianagency.com/the-front/photos/account/cover-4.jpg"
+              src="/assets/contact-page.jpg"
               alt="Contact"
               className={classes.image}
               lazyProps={{ width: '100%' }}
@@ -94,78 +107,42 @@ const ContactPageCover = () => {
           </div>
           <div className={classes.content}>
             <SectionHeader
-              title="Contact us for anything"
-              subtitle="Our goal is to be as helpful as possible."
+              title="Contact Us"
+              subtitle=""
               data-aos="fade-up"
               align="center"
             />
-            <div>
-              <Grid container spacing={isMd ? 4 : 2}>
-                <Grid item xs={12} data-aos="fade-up">
-                  <Typography
-                    variant="subtitle1"
-                    color="textPrimary"
-                  >
-                    Full name
-                  </Typography>
-                  <TextField
-                    placeholder="Your full name"
-                    variant="outlined"
-                    size="medium"
-                    name="fullname"
-                    fullWidth
-                    type="text"
+
+            <div class="MuiTypography-root MuiListItemText-secondary MuiTypography-subtitle1 MuiTypography-colorTextPrimary MuiTypography-displayBlock">Connect with Chuck Fresco to explore his creative projects, collaborations, and more. Feel free to reach out for inquiries, opportunities, or just to say hello!</div>
+            <div style={{ paddingTop: '20px' }}> 
+              <List>
+                <ListItem disableGutters data-aos="fade-up">
+                  <ListItemAvatar>
+                    <Avatar
+                      src="https://assets.maccarianagency.com/the-front/illustrations/contact-icon-mail.png"
+                      srcSet="https://assets.maccarianagency.com/the-front/illustrations/contact-icon-mail@2x.png 2x"
+                      className={classes.icon}
+                    />
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary="Email"
+                    secondary="contact@chuckfresco.com"
+                    primaryTypographyProps={{
+                      variant: 'subtitle1',
+                      color: 'textSecondary',
+                    }}
+                    secondaryTypographyProps={{
+                      variant: 'subtitle1',
+                      color: 'textPrimary',
+                    }}
                   />
-                </Grid>
-                <Grid item xs={12} data-aos="fade-up">
-                  <Typography
-                    variant="subtitle1"
-                    color="textPrimary"
-                  >
-                    E-mail
-                  </Typography>
-                  <TextField
-                    placeholder="Your e-mail address"
-                    variant="outlined"
-                    size="medium"
-                    name="email"
-                    fullWidth
-                    type="email"
-                  />
-                </Grid>
-                <Grid item xs={12} data-aos="fade-up">
-                  <Typography
-                    variant="subtitle1"
-                    color="textPrimary"
-                  >
-                    Message
-                  </Typography>
-                  <TextField
-                    placeholder="Your question about our services"
-                    variant="outlined"
-                    name="message"
-                    fullWidth
-                    multiline
-                    rows={4}
-                  />
-                </Grid>
-                <Grid item container justify="center" xs={12}>
-                  <Button
-                    variant="contained"
-                    type="submit"
-                    color="primary"
-                    size="large"
-                    fullWidth
-                  >
-                    submit
-                  </Button>
-                </Grid>
-              </Grid>
+                </ListItem>
+              </List>
             </div>
           </div>
         </div>
       </Section>
-      <Divider />
+      <Divider className={classes.divider} />
     </div>
   );
 };

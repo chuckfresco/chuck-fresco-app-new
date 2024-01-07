@@ -404,7 +404,7 @@ const Routes = () => {
       />
       <Route
         exact
-        path="/contact-page-cover"
+        path="/contact"
         render={matchProps => (
           <WithLayout
             {...matchProps}

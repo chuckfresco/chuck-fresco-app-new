@@ -91,12 +91,12 @@ const Navbar = ({ onMobileClose, openMobile }) => {
           <Button
             color="primary"
             component="a"
-            href="https://marketplace.axieinfinity.com/profile/ronin:e2d63c7d27f6c01bb1a182f2014c4f1f4602c7d2/axie?sort=PriceDesc"
+            href="/contact"
             variant="contained"
             target="blank"
             fullWidth
           >
-            MARKET PLACE
+            CONTACT
           </Button>
         </Box>
       </Box>

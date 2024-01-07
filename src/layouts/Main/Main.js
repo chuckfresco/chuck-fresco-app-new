@@ -76,20 +76,13 @@ const Main = ({ children, themeToggler, themeMode }) => {
           ],
         },
         contact: {
-          groupTitle: 'Contact',
+          groupTitle: 'About',
           pages: [
             {
-              title: 'Reach View',
-              href: '/contact-page',
+              title: 'Contact',
+              href: '/contact',
             },
-            {
-              title: 'Sidebar Map',
-              href: '/contact-sidebar-map',
-            },
-            {
-              title: 'Cover',
-              href: '/contact-page-cover',
-            },
+
           ],
         },
         blog: {

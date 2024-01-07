@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
   imageAnimation: {
-    background: `url("/assets/axie-infinity-images.png")`,
+    background: `url("/assets/axie-games.jpg")`,
     backgroundRepeat: 'repeat',
     backgroundAttachment: 'scroll',
     backgroundSize: '400px auto',
@@ -58,7 +58,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   imageAnimationDark: {
-    background: `url("/assets/axie-infinity-images.png")`,
+    background: `url("/assets/axie-games.jpg")`,
   },
   '@keyframes slideshow': {
     '0%': {
