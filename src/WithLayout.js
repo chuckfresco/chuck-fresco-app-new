@@ -7,7 +7,7 @@ import getTheme from 'theme';
 import AOS from 'aos';
 
 export const useDarkMode = () => {
-  const [themeMode, setTheme] = useState('light');
+  const [themeMode, setTheme] = useState('dark'); // Change 'light' to 'dark' here
   const [mountedComponent, setMountedComponent] = useState(false);
 
   const setMode = mode => {
@@ -21,7 +21,7 @@ export const useDarkMode = () => {
 
   useEffect(() => {
     const localTheme = window.localStorage.getItem('themeMode');
-    localTheme ? setTheme(localTheme) : setMode('light');
+    localTheme ? setTheme(localTheme) : setMode('dark'); // Change 'light' to 'dark' here
     setMountedComponent(true);
     AOS.refresh();
   }, []);
@@ -32,6 +32,7 @@ export const useDarkMode = () => {
 
   return [themeMode, themeToggler, mountedComponent];
 };
+
 
 export default function WithLayout({ component: Component, layout: Layout, ...rest }) {
   React.useEffect(() => {

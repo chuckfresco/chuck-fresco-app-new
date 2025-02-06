@@ -295,7 +295,7 @@ export const pages = [
   },
   {
     title: 'Contact Cover',
-    href: '/contact-page-cover',
+    href: '/contact',
     cover: 'https://assets.maccarianagency.com/the-front/web-screens/pages/contact-page-cover-min.png',
     coverDark: 'https://assets.maccarianagency.com/the-front/web-screens/pages/contact-page-cover--dark-min.png',
   },

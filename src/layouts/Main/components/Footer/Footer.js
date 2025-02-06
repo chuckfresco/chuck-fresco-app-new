@@ -146,6 +146,7 @@ const Footer = props => {
   const SupportedPages = () => {
     const {
       career,
+      contact,
 /*       helpCenter,
       company,
       contact,
@@ -158,11 +159,12 @@ const Footer = props => {
           <MenuGroup item={career} />
   {/*         <MenuGroup item={helpCenter} /> */}
         </div>
-{/*         <div>
-          <MenuGroup item={company} />
+         <div>
           <MenuGroup item={contact} />
+          </div>
+          { /*          <MenuGroup item={company} />
         </div>
-        <div>
+       <div>
           <MenuGroup item={blog} />
           <MenuGroup item={portfolio} />
         </div> */}
