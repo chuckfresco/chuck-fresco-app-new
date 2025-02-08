@@ -182,6 +182,7 @@ const Topbar = ({ themeMode, themeToggler, onSidebarOpen, pages, className, ...r
   const SupportedPages = () => {
     const {
       career,
+      pixelsOnline,
 /*       helpCenter,
       company,
       contact,
@@ -192,6 +193,7 @@ const Topbar = ({ themeMode, themeToggler, onSidebarOpen, pages, className, ...r
       <div className={classes.menu}>
         <div className={classes.menuItem}>
           <MenuGroup item={career} />
+          <MenuGroup item={pixelsOnline} />
      {/*     <MenuGroup item={helpCenter} /> */}
         </div>
 {/*         <div className={classes.menuItem}>
@@ -298,9 +300,9 @@ const Topbar = ({ themeMode, themeToggler, onSidebarOpen, pages, className, ...r
               </Popover>
             </div>
           ))}
-          <ListItem className={clsx(classes.listItem, 'menu-item--no-dropdown')}>
+{/*           <ListItem className={clsx(classes.listItem, 'menu-item--no-dropdown')}>
             <DarkModeToggler themeMode={themeMode} onClick={() => themeToggler()} />
-          </ListItem>
+          </ListItem> */}
           <ListItem className={clsx(classes.listItem, 'menu-item--no-dropdown')}>
             <Button
               variant="outlined"
