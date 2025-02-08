@@ -41,6 +41,15 @@ const Main = ({ children, themeToggler, themeMode }) => {
             },
           ],
         },
+        pixelsOnline: {
+          groupTitle: 'Pixels Online',
+          pages: [
+            {
+              title: 'Industry Limits',
+              href: '/pixels/industry-limits',
+            },
+          ],
+        },
         helpCenter: {
           groupTitle: 'Help center',
           pages: [
@@ -82,7 +91,6 @@ const Main = ({ children, themeToggler, themeMode }) => {
               title: 'Contact',
               href: '/contact',
             },
-
           ],
         },
         blog: {
@@ -129,85 +137,6 @@ const Main = ({ children, themeToggler, themeMode }) => {
         },
       },
     },
-/*     account: {
-      title: 'About',
-      id: 'account',
-      children: {
-        settings: {
-          groupTitle: 'Settings',
-          pages: [
-            {
-              title: 'General',
-              href: '/account/?pid=general',
-            },
-            {
-              title: 'Security',
-              href: '/account/?pid=security',
-            },
-            {
-              title: 'Notifications',
-              href: '/account/?pid=notifications',
-            },
-            {
-              title: 'Billing',
-              href: '/account/?pid=billing',
-            },
-          ],
-        },
-        signup: {
-          groupTitle: 'Sign up',
-          pages: [
-            {
-              title: 'Simple',
-              href: '/signup-simple',
-            },
-            {
-              title: 'Cover',
-              href: '/signup-cover',
-            },
-          ],
-        },
-        signin: {
-          groupTitle: 'Sign in',
-          pages: [
-            {
-              title: 'Simple',
-              href: '/signin-simple',
-            },
-            {
-              title: 'Cover',
-              href: '/signin-cover',
-            },
-          ],
-        },
-        password: {
-          groupTitle: 'Password reset',
-          pages: [
-            {
-              title: 'Simple',
-              href: '/password-reset-simple',
-            },
-            {
-              title: 'Cover',
-              href: '/password-reset-cover',
-            },
-          ],
-        },
-        error: {
-          groupTitle: 'Error',
-          pages: [
-            {
-              title: 'Simple',
-              href: '/not-found',
-            },
-            {
-              title: 'Cover',
-              href: '/not-found-cover',
-            },
-          ],
-        },
-      },
-    }, */
   };
 
   const [openSidebar, setOpenSidebar] = useState(false);

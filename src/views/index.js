@@ -1,5 +1,7 @@
 export { default as Home } from './Home';
 export { default as IndexView } from './IndexView';
+export { default as IndustryLimits } from './IndustryLimits';
+
 export { default as Agency } from './Agency';
 export { default as CareerListing } from './CareerListing';
 export { default as CareerListingMinimal } from './CareerListingMinimal';

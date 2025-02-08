@@ -8,6 +8,8 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import WithLayout from 'WithLayout';
 import { Main as MainLayout, Minimal as MinimalLayout, DocsLayout } from './layouts';
 
+
+
 import {
   Home as HomeView,
   IndexView,
@@ -30,6 +32,8 @@ import {
   Rental as RentalView,
   CloudHosting as CloudHostingView,
   Logistics as LogisticsView,
+  IndustryLimits as IndustryLimitsView,
+
   Ecommerce as EcommerceView,
   Pricing as PricingView,
   About as AboutView,
@@ -79,6 +83,17 @@ const Routes = () => {
           <WithLayout
             {...matchProps}
             component={HomeView}
+            layout={MainLayout}
+          />
+        )}
+      />
+      <Route
+        exact
+        path="/pixels/industry-limits"
+        render={matchProps => (
+          <WithLayout
+            {...matchProps}
+            component={IndustryLimitsView}
             layout={MainLayout}
           />
         )}
