@@ -307,9 +307,9 @@ const Topbar = ({ themeMode, themeToggler, onSidebarOpen, pages, className, ...r
             <Button
               variant="outlined"
               component="a"
-              href="/"
+              href="/pixels/industry-limits"
             >
-              Guide
+              Pixels
             </Button>
           </ListItem>
           <ListItem className={clsx(classes.listItem, 'menu-item--no-dropdown')}>

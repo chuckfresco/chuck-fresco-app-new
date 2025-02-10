@@ -110,6 +110,7 @@ const SidebarNav = props => {
   const SupportedPages = () => {
     const {
       career,
+      pixelsOnline,
       helpCenter,
       company,
       contact,
@@ -120,6 +121,7 @@ const SidebarNav = props => {
       <div className={classes.menu}>
         <div className={classes.menuItem}>
           <MenuGroup item={career} />
+          <MenuGroup item={pixelsOnline} />
 {/*           <MenuGroup item={helpCenter} />
           <MenuGroup item={company} /> */}
         </div>
@@ -184,11 +186,10 @@ const SidebarNav = props => {
         <Button
           variant="outlined"
           fullWidth
-          disabled
           component="a"
-          href="/guide"
+          href="/pixels/industry-limits"
         >
-          Guide
+          Pixels
         </Button>
       </ListItem>
       <ListItem className={classes.listItem}>

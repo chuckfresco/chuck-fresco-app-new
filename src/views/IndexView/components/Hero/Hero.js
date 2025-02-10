@@ -85,9 +85,9 @@ const Hero = ({ themeMode = 'light', className, ...rest }) => {
         typedProps={{
           strings: [
             'Axie Infinity',
-            'Axie Giveaways',
-            'Axie Guides',
-            'Axie Streams',
+            'Ronin',
+            'Pixels Online',
+            'Ronin Streams',
             'NFTs',
             'and much more...',
           ],
@@ -98,11 +98,11 @@ const Hero = ({ themeMode = 'light', className, ...rest }) => {
     </Typography>
   );
 
-  const subtitle = 'Weekly Axie Infinity Content and Giveaways'
+  const subtitle = 'Weekly Ronin Content and Giveaways'
 
   const docsButton = (
-    <Button size="large" variant="outlined" color="primary" component="a" href="/#" disabled={true} >
-      Guide
+    <Button size="large" variant="outlined" color="primary" component="a" href="/pixels/industry-limits" disabled={false} >
+      Pixels Guide
     </Button>
   );
 
@@ -131,7 +131,7 @@ const Hero = ({ themeMode = 'light', className, ...rest }) => {
         variant: 'h2',
         color: 'textPrimary',
       }}
-      ctaGroup={[docsButton, buyButton]}
+      ctaGroup={[buyButton, docsButton]}
       data-aos="fade-right"
       disableGutter
       className={classes.leftSideContent}
