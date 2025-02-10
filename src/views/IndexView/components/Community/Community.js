@@ -37,7 +37,7 @@ const Community = props => {
   return (
     <div className={className} {...rest}>
       <SectionHeader
-        title="Join the Fresco Scholarship Axie community"
+        title="Join the $FRESCO community"
         subtitle="Join players discussing the world of Axie Infinity and earning scholarships by participating"
         ctaGroup={[
           <Button

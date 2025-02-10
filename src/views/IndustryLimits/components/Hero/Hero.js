@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
     overflow: 'hidden',
   },
   image: {
-    minHeight: 400,
+    minHeight: 300,
     objectFit: 'cover',
     [theme.breakpoints.down('sm')]: {
       width: 'auto',
@@ -28,9 +28,9 @@ const useStyles = makeStyles(theme => ({
   },
   section: {
     position: 'absolute',
-    top: '50%',
+    top: '40%',
     left: '50%',
-    transform: 'translate(-50%, -50%)',
+    transform: 'translate(-50%, -40%)',
     paddingTop: 0,
     paddingBottom: 0,
   },
@@ -42,8 +42,8 @@ const Hero = props => {
   return (
     <div className={clsx(classes.root, className)} {...rest}>
       <Image
-        src="/assets/hero-pixels-3.png"
-        srcSet="/assets/hero-pixels-3.png 2x"
+        src="/assets/hero-pixels-4.png"
+        srcSet="/assets/hero-pixels-4.png 2x"
         alt="About"
         className={classes.image}
         lazyProps={{

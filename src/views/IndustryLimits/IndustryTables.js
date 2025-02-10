@@ -1,9 +1,14 @@
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { useMediaQuery, Grid, Button } from '@material-ui/core';
+import { Image } from 'components/atoms';
+import { SectionHeader } from 'components/molecules';
 
 const TableComponent = ({ title, headers, data, colWidths }) => (
   <div style={{ marginBottom: "20px" }}>
     <h3>{title}</h3>
-    <table border="1" cellPadding="5" cellSpacing="0" style={{ width: "100%", borderCollapse: "collapse" }}>
+    <table border="1" cellPadding="2" cellSpacing="0" style={{ width: "100%", borderCollapse: "collapse" }}>
       <colgroup>
         {colWidths.map((width, idx) => (
           <col key={idx} style={{ width }} />
@@ -12,7 +17,7 @@ const TableComponent = ({ title, headers, data, colWidths }) => (
       <thead>
         <tr>
           {headers.map((header, idx) => (
-            <th key={idx} style={{ background: "#ddd", padding: "10px", color: "black" }}>{header}</th>
+            <th key={idx} style={{ background: "#ddd", padding: "5px", color: "black", height: "20px" }}>{header}</th>
           ))}
         </tr>
       </thead>
@@ -20,7 +25,7 @@ const TableComponent = ({ title, headers, data, colWidths }) => (
         {data.map((row, index) => (
           <tr key={index}>
             {row.map((cell, idx) => (
-              <td key={idx} style={{ padding: "10px" }}>{cell}</td>
+              <td key={idx} style={{ padding: "5px", height: "20px" }}>{cell}</td>
             ))}
           </tr>
         ))}
@@ -36,12 +41,12 @@ const IndustryTables = () => {
   return (
     <div style={{ padding: "20px" }}>
       <div style={{ marginBottom: "40px", display: "flex", gap: "20px" }}>
-        <button onClick={() => document.getElementById("outside-section").scrollIntoView({ behavior: "smooth" })}>
+        <Button color="primary" variant="contained" size="large" onClick={() => document.getElementById("outside-section").scrollIntoView({ behavior: "smooth" })}>
           Outside Industries
-        </button>
-        <button onClick={() => document.getElementById("inside-section").scrollIntoView({ behavior: "smooth" })}>
+        </Button>
+        <Button color="primary" variant="contained" size="large" onClick={() => document.getElementById("inside-section").scrollIntoView({ behavior: "smooth" })}>
           Inside Industries
-        </button>
+        </Button>
       </div>
       <h2 id="outside-section" style={{ marginBottom: "40px" }}>Outside Industries</h2>
       {tables.outside.map((table, index) => (
@@ -66,6 +71,10 @@ const tables = {
         ["T2 Tree", "3.5%", "2.6%", "1.8%"],
         ["T3 Tree", "N/A", "3%", "2%"],
         ["T4 Tree", "N/A", "3.3%", "2.3%"],
+        ["T1 Mine", "10%", "7.4%", "5%"],
+        ["T2 Mine", "15%", "11.1%", "7.5%"],
+        ["T3 Mine", "N/A", "14.8%", "10%"],
+        ["T4 Mine", "N/A", "18.5%", "12.5%"],
       ],
       headers: ["Industry", "Speck (%)", "Small Size (%)", "Large Size (%)"],
     },
@@ -95,7 +104,7 @@ const tables = {
         ["Winery T1/T2/T3/T4", "N/A", "100%", "100%"],
       ],
       headers: ["Industry", "Speck (%)", "Small Size (%)", "Large Size (%)"],
-    }
+    },
   ],
   inside: [
     {
@@ -117,8 +126,8 @@ const tables = {
         ["T4 WW/MW/SS", "N/A", "20%", "15%"],
       ],
       headers: ["Industry", "Speck (%)", "Small House (%)", "Large House (%)"],
-    }
-  ],
+    },
+  ]
 };
 
 export default IndustryTables;

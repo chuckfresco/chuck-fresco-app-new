@@ -46,10 +46,21 @@ const QuickStart = ({ className, ...rest }) => {
   });
 
   const docsButton = (
-    <Button size="large" variant="contained" color="primary" component="a" href="https://twitter.com/search?q=%23chuckfrescogiveaway&src=typed_query&f=live">
+    <Button size="large" variant="contained" color="primary" component="a" href="https://x.com/search?q=from%3A%40ChuckFresco%20%23FrescoGiveaways%20%20-filter%3Areplies&src=typed_query&f=live">
       Giveaways
     </Button>
+
   );
+
+  const buyFrescoButton = (
+
+    <Button size="large" variant="contained"  component="a" href="https://app.roninchain.com/swap?outputCurrency=0x08efAE2069fA21F94Af50D9DdBaa268FA514006F&inputCurrency=RON#/swap">
+    Buy $FRESCO
+  </Button>
+
+  );
+
+
 
   const buyButton = (
     <Button
@@ -71,9 +82,9 @@ const QuickStart = ({ className, ...rest }) => {
             <Grid item xs={12} md={5} data-aos={'fade-right'}>
               <SectionHeader
                 id="Giveaway"
-                title="Axie Giveaways"
-                subtitle="The Axie Giveaway is hosted monthly to give back to the community for the support. We select a winner from our Twitter. Check in regularly on Twitter for more chances to win! #chuckfrescogiveaway"
-                ctaGroup={[docsButton]}
+                title="$FRESCO Giveaways"
+                subtitle="The $FRESCO Giveaway is hosted monthly to give back to the community for the support. We select a winner from our Twitter. Check in regularly on Twitter for more chances to win! #frescogiveaway"
+                ctaGroup={[docsButton, buyFrescoButton]}
                 align={isMd ? 'left' : 'center'}
                 disableGutter
                 titleVariant="h3"
@@ -84,7 +95,7 @@ const QuickStart = ({ className, ...rest }) => {
             <Grid item container alignItems="center"  justifyContent="center" xs={12} md={7} data-aos={'fade-left'}>
 
             <Image
-            src="/assets/axie-scholarship.jpg"
+            src="/assets/fresco-coin.webp"
             alt="Chuck Fresco Giveaway"
             className={classes.image}
           />
