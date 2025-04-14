@@ -66,24 +66,6 @@ const MonsterDrops = () => {
         <MonsterDropsTable />
       </Section>
 
-      {/* You can continue with more sections like this */}
-      <SectionAlternate>
-        <Features data={features} className={classes.featuresSection} />
-      </SectionAlternate>
-
-      <Section>
-        <Integrations data={integrations} className={classes.integrationsSection} />
-      </Section>
-
-      <Section>
-        <Team data={team} />
-      </Section>
-
-      <Section>
-        <Reviews data={reviews} className={classes.reviewSection} />
-      </Section>
-
-      {/* etc... */}
     </div>
   );
 };
