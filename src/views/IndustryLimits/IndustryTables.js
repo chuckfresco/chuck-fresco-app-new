@@ -1,36 +1,54 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { useMediaQuery, Grid, Button } from '@material-ui/core';
-import { Image } from 'components/atoms';
-import { SectionHeader } from 'components/molecules';
+import { Button } from '@material-ui/core';
+import './styles.css'; // Make sure to include this in your project
 
 const TableComponent = ({ title, headers, data, colWidths }) => (
-  <div style={{ marginBottom: "20px" }}>
+  <div style={{ marginBottom: "20px", overflowX: "auto" }}>
     <h3>{title}</h3>
-    <table border="1" cellPadding="2" cellSpacing="0" style={{ width: "100%", borderCollapse: "collapse" }}>
-      <colgroup>
-        {colWidths.map((width, idx) => (
-          <col key={idx} style={{ width }} />
-        ))}
-      </colgroup>
-      <thead>
-        <tr>
-          {headers.map((header, idx) => (
-            <th key={idx} style={{ background: "#ddd", padding: "5px", color: "black", height: "20px" }}>{header}</th>
+    <div
+      style={{
+        maxWidth: "800px",
+        width: "100%",
+        marginLeft: "0",
+        marginRight: "auto",
+        display: "block",
+      }}
+    >
+      <table
+        border="1"
+        cellPadding="2"
+        cellSpacing="0"
+        style={{
+          width: "100%",
+          maxWidth: "100%",
+          borderCollapse: "collapse",
+        }}
+      >
+        <colgroup>
+          {colWidths.map((width, idx) => (
+            <col key={idx} style={{ width }} />
           ))}
-        </tr>
-      </thead>
-      <tbody>
-        {data.map((row, index) => (
-          <tr key={index}>
-            {row.map((cell, idx) => (
-              <td key={idx} style={{ padding: "5px", height: "20px" }}>{cell}</td>
+        </colgroup>
+        <thead>
+          <tr>
+            {headers.map((header, idx) => (
+              <th key={idx} style={{ background: "#ddd", padding: "5px", color: "black", height: "20px" }}>
+                {header}
+              </th>
             ))}
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {data.map((row, index) => (
+            <tr key={index}>
+              {row.map((cell, idx) => (
+                <td key={idx} style={{ padding: "5px", height: "20px" }}>{cell}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   </div>
 );
 
@@ -126,7 +144,7 @@ const tables = {
         ["T4 WW/MW/SS", "N/A", "20%", "15%"],
       ],
       headers: ["Industry", "Speck (%)", "Small House (%)", "Large House (%)"],
-    },
+    }
   ]
 };
 

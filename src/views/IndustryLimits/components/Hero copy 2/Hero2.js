@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Hero = props => {
+const Hero2 = props => {
   const { className, ...rest } = props;
   const classes = useStyles();
 
@@ -65,11 +65,11 @@ const Hero = props => {
   );
 };
 
-Hero.propTypes = {
+Hero2.propTypes = {
   /**
    * External classes
    */
   className: PropTypes.string,
 };
 
-export default Hero;
+export default Hero2;

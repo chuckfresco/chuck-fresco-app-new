@@ -34,6 +34,8 @@ import {
   Logistics as LogisticsView,
   IndustryLimits as IndustryLimitsView,
 
+  MonsterDrops as MonsterDropsView,
+
   Ecommerce as EcommerceView,
   Pricing as PricingView,
   About as AboutView,
@@ -94,6 +96,17 @@ const Routes = () => {
           <WithLayout
             {...matchProps}
             component={IndustryLimitsView}
+            layout={MainLayout}
+          />
+        )}
+      />
+      <Route
+        exact
+        path="/runiverse/monster-drops"
+        render={matchProps => (
+          <WithLayout
+            {...matchProps}
+            component={MonsterDropsView}
             layout={MainLayout}
           />
         )}
