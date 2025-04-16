@@ -33,8 +33,8 @@ import {
   CloudHosting as CloudHostingView,
   Logistics as LogisticsView,
   IndustryLimits as IndustryLimitsView,
-
   MonsterDrops as MonsterDropsView,
+  FrescoManorSpells as FrescoManorSpellsView,
 
   Ecommerce as EcommerceView,
   Pricing as PricingView,
@@ -107,6 +107,17 @@ const Routes = () => {
           <WithLayout
             {...matchProps}
             component={MonsterDropsView}
+            layout={MainLayout}
+          />
+        )}
+      />
+      <Route
+        exact
+        path="/runiverse"
+        render={matchProps => (
+          <WithLayout
+            {...matchProps}
+            component={FrescoManorSpellsView}
             layout={MainLayout}
           />
         )}
