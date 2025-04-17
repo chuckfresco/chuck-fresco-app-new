@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import { Section, SectionAlternate } from 'components/organisms';
+import { Helmet } from 'react-helmet';
 import {
   About,
   AboutBottom,
@@ -59,6 +60,15 @@ const IndustryLimits = () => {
 
   return (
     <div>
+        <Helmet>
+        <title>Industry Limits | Pixels Online Guide</title>
+        <meta name="description" content="Check your daily output limits for farming, crafting, and cooking industries in Runiverse based on building size." />
+        <meta property="og:title" content="Industry Limits | Pixels Online Guide" />
+        <meta property="og:description" content="Speck, Small, and Large building production percentages for each industry. Plan your resources efficiently!" />
+        <meta property="og:image" content="https://chuckfresco.com/assets/industry-limits.jpg" />
+        <meta property="og:url" content="https://chuckfresco.com/industry-limits" />
+      </Helmet>
+
       <Hero />
       <IndustryTables />
       

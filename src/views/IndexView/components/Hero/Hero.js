@@ -5,7 +5,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Button, Typography } from '@material-ui/core';
 import { SectionHeader, TypedText } from 'components/molecules';
 import { HeroShaped } from 'components/organisms';
-import { HashLink } from 'react-router-hash-link';
+import WbSunnyOutlinedIcon from '@material-ui/icons/WbSunnyOutlined';
+
 
 const useStyles = makeStyles(theme => ({
   fontWeight900: {
@@ -112,12 +113,12 @@ const Hero = ({ themeMode = 'light', className, ...rest }) => {
       variant="contained"
       color="primary"
       component="a"
-    //  href="/#Giveaway"
+      href="/runiverse"
       smooth={true}
       
     >
 
-      <HashLink smooth to="#Giveaway" style={{ color: '#FFFFFF' }}>Weekly Giveaway</HashLink>
+      Runiverse Guide <WbSunnyOutlinedIcon style={{ marginLeft: 4, fontSize: 20 }} />
      
     </Button>
   );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -13,6 +13,9 @@ import {
 } from '@material-ui/core';
 import { Image } from 'components/atoms';
 import { SectionHeader } from 'components/molecules';
+import Lightbox from 'react-image-lightbox';
+import 'react-image-lightbox/style.css';
+
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -56,9 +59,11 @@ const Products = ({ data, className, ...rest }) => {
     defaultMatches: true,
   });
 
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+
   const handleClick = title => {
     if (title === 'FRESCO Manor Map') {
-      window.open('https://runiverse-map.vercel.app/?lat=-158.9609375&lng=126.94140625&zoom=10', '_blank');
+      setIsLightboxOpen(true);
     } else if (title === 'Monster Drops') {
       window.location.href = '/runiverse/monster-drops';
     } else if (title === 'FRESCO Manor Spells') {
@@ -105,6 +110,13 @@ const Products = ({ data, className, ...rest }) => {
           </Grid>
         ))}
       </Grid>
+
+      {isLightboxOpen && (
+        <Lightbox
+          mainSrc="/assets/fresco-manor-map.jpg" // change this to your actual image path or URL
+          onCloseRequest={() => setIsLightboxOpen(false)}
+        />
+      )}
     </div>
   );
 };

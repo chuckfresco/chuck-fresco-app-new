@@ -17,6 +17,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Image, DarkModeToggler } from 'components/atoms';
 
+import WbSunnyOutlinedIcon from '@material-ui/icons/WbSunnyOutlined';
+
 const useStyles = makeStyles(theme => ({
   flexGrow: {
     flexGrow: 1,
@@ -182,6 +184,7 @@ const Topbar = ({ themeMode, themeToggler, onSidebarOpen, pages, className, ...r
   const SupportedPages = () => {
     const {
       career,
+      forgottenRuniverse,
       pixelsOnline,
 /*       helpCenter,
       company,
@@ -193,6 +196,7 @@ const Topbar = ({ themeMode, themeToggler, onSidebarOpen, pages, className, ...r
       <div className={classes.menu}>
         <div className={classes.menuItem}>
           <MenuGroup item={career} />
+          <MenuGroup item={forgottenRuniverse} />
           <MenuGroup item={pixelsOnline} />
      {/*     <MenuGroup item={helpCenter} /> */}
         </div>
@@ -307,9 +311,9 @@ const Topbar = ({ themeMode, themeToggler, onSidebarOpen, pages, className, ...r
             <Button
               variant="outlined"
               component="a"
-              href="/pixels/industry-limits"
+              href="/runiverse"
             >
-              Pixels
+              Runiverse <WbSunnyOutlinedIcon style={{ marginLeft: 4, fontSize: 20 }} />
             </Button>
           </ListItem>
           <ListItem className={clsx(classes.listItem, 'menu-item--no-dropdown')}>

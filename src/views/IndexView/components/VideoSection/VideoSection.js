@@ -42,7 +42,7 @@ const VideoSection = props => {
             <Grid item xs={12}>
               <SectionHeader
                 title="Latest Video"
-                subtitle="Check out the latest Axie Content and Guides on our YouTube Channel."
+                subtitle="Check out the latest Ronin Content and Guides on our YouTube Channel."
                 ctaGroup={[
                   <Button
                     variant="contained"
@@ -63,7 +63,7 @@ const VideoSection = props => {
         </Grid>
         <Grid item xs={12} md={6} data-aos={'fade-up'}>
           <Grid container justify="center">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/-FvODxuDfHU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/saCNw0C0iiQ?si=bE3SoCXoOJSuPvHi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </Grid>
         </Grid>
       </Grid>

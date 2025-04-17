@@ -41,6 +41,19 @@ const Main = ({ children, themeToggler, themeMode }) => {
             },
           ],
         },
+        forgottenRuniverse: {
+          groupTitle: 'Forgotten Runiverse',
+          pages: [
+            {
+              title: 'Runiverse Spells',
+              href: '/runiverse',
+            },
+            {
+              title: 'Runiverse Monster Drops',
+              href: '/runiverse/monster-drops',
+            },
+          ],
+        },
         pixelsOnline: {
           groupTitle: 'Pixels Online',
           pages: [

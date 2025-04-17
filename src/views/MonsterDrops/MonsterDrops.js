@@ -1,32 +1,10 @@
 import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
-import { Section, SectionAlternate } from 'components/organisms';
+import { Helmet } from 'react-helmet'; // 👈 Add Helmet
+import { Section } from 'components/organisms';
 import {
-  About,
-  AboutBottom,
-  Features,
   Hero,
-  Integrations,
-  Jobs,
-  News,
-  Pricings,
-  Reviews,
-  Search,
-  Team,
-  Trucking,
-  Video,
 } from './components';
-
-import {
-  trucking,
-  features,
-  team,
-  integrations,
-  reviews,
-  jobs,
-  news,
-  pricings,
-} from './data';
 
 import MonsterDropsTable from './MonsterDropsTable';
 
@@ -59,13 +37,20 @@ const MonsterDrops = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Monster Drop Table | Forgotten Runiverse Guide</title>
+        <meta name="description" content="Browse all monster drops and loot in Runiverse, including materials and skills dropped by creatures across all regions." />
+        <meta property="og:title" content="Monster Drops | Forgotten Runiverse Guide" />
+        <meta property="og:description" content="Get full details on monster drops, materials, and skills to enhance your adventure in the Runiverse." />
+        <meta property="og:image" content="https://chuckfresco.com/assets/monster-drops.jpg" />
+        <meta property="og:url" content="https://chuckfresco.com/monster-drops" />
+      </Helmet>
+
       <Hero />
 
-      {/* Optional: Wrap in a styled Section */}
       <Section>
         <MonsterDropsTable />
       </Section>
-
     </div>
   );
 };
