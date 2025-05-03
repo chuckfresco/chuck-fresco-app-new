@@ -65,8 +65,8 @@ const IndustryLimits = () => {
         <meta name="description" content="Check your daily output limits for farming, crafting, and cooking industries in Runiverse based on building size." />
         <meta property="og:title" content="Industry Limits | Pixels Online Guide" />
         <meta property="og:description" content="Speck, Small, and Large building production percentages for each industry. Plan your resources efficiently!" />
-        <meta property="og:image" content="https://chuckfresco.com/assets/industry-limits.jpg" />
-        <meta property="og:url" content="https://chuckfresco.com/industry-limits" />
+        <meta property="og:image" content="%PUBLIC_URL%/assets/social-pixels.jpg" />
+        <meta property="og:url" content="https://chuckfresco.com/pixels/industry-limits" />
       </Helmet>
 
       <Hero />

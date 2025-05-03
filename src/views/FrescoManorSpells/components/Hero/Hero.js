@@ -53,8 +53,8 @@ const Hero = props => {
       />
       <Section className={classes.section}>
         <SectionHeader
-          title="Forgotten Runiverse "
-          subtitle="Moonlight Wilds "
+          title="Mage Spells "
+          subtitle="Forgotten Runiverse: Moonlight Wilds "
           align="left"
           data-aos="fade-up"
           disableGutter

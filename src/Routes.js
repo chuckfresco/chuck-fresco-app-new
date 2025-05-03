@@ -35,6 +35,10 @@ import {
   IndustryLimits as IndustryLimitsView,
   MonsterDrops as MonsterDropsView,
   FrescoManorSpells as FrescoManorSpellsView,
+  StatusEffects as StatusEffectsView,
+  Runiverse as RuniverseView,
+  RuniverseEquipment as RuniverseEquipmentView,
+  RuniverseResources as RuniverseResourcesView,
 
   Ecommerce as EcommerceView,
   Pricing as PricingView,
@@ -102,6 +106,29 @@ const Routes = () => {
       />
       <Route
         exact
+        path="/runiverse"
+        render={matchProps => (
+          <WithLayout
+            {...matchProps}
+            component={RuniverseView}
+            layout={MainLayout}
+          />
+        )}
+      />
+
+      <Route
+        exact
+        path="/runiverse/spells"
+        render={matchProps => (
+          <WithLayout
+            {...matchProps}
+            component={FrescoManorSpellsView}
+            layout={MainLayout}
+          />
+        )}
+      />
+      <Route
+        exact
         path="/runiverse/monster-drops"
         render={matchProps => (
           <WithLayout
@@ -113,11 +140,33 @@ const Routes = () => {
       />
       <Route
         exact
-        path="/runiverse"
+        path="/runiverse/status-effects"
         render={matchProps => (
           <WithLayout
             {...matchProps}
-            component={FrescoManorSpellsView}
+            component={StatusEffectsView}
+            layout={MainLayout}
+          />
+        )}
+      />
+      <Route
+        exact
+        path="/runiverse/equipment"
+        render={matchProps => (
+          <WithLayout
+            {...matchProps}
+            component={RuniverseEquipmentView}
+            layout={MainLayout}
+          />
+        )}
+      />
+      <Route
+        exact
+        path="/runiverse/resources"
+        render={matchProps => (
+          <WithLayout
+            {...matchProps}
+            component={RuniverseResourcesView}
             layout={MainLayout}
           />
         )}
@@ -198,6 +247,14 @@ const Routes = () => {
             layout={MainLayout}
           />
         )}
+      />
+      <Route
+        exact
+        path="/discord"
+        render={() => {
+          window.location.href = 'https://discord.gg/NH3Yu95YVV';
+          return null;
+        }}
       />
       <Route
         exact

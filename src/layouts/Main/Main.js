@@ -45,12 +45,25 @@ const Main = ({ children, themeToggler, themeMode }) => {
           groupTitle: 'Forgotten Runiverse',
           pages: [
             {
-              title: 'Runiverse Spells',
+              title: 'Mage Spells',
               href: '/runiverse',
             },
             {
-              title: 'Runiverse Monster Drops',
+              title: 'Mage Equipment',
+              href: '/runiverse/equipment',
+            },
+            {
+              title: 'Monster Drops',
               href: '/runiverse/monster-drops',
+            },
+            {
+              title: 'Resources',
+              href: '/runiverse/resources',
+            },  
+                     
+            {
+              title: 'Status Effects',
+              href: '/runiverse/status-effects',
             },
           ],
         },

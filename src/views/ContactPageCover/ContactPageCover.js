@@ -11,9 +11,10 @@ import {
   ListItem,
   ListItemAvatar,
   ListItemText,
-  Avatar,
+  Box,
 } from '@material-ui/core';
 
+import { FaEnvelope, FaDiscord } from 'react-icons/fa';
 import { Image } from 'components/atoms';
 import { SectionHeader } from 'components/molecules';
 import { Section } from 'components/organisms';
@@ -24,10 +25,8 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     display: 'flex',
     flexDirection: 'column',
-    minHeight: '100vh', // Set the minimum height to fill the viewport
+    minHeight: '100vh',
   },
-
-  
   section: {
     [theme.breakpoints.down('sm')]: {
       paddingTop: 0,
@@ -36,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   wrapper: {
     display: 'flex',
     flexDirection: 'column',
-    flex: 1, // Let this container take all available vertical space
+    flex: 1,
     [theme.breakpoints.up('md')]: {
       flexDirection: 'row',
       justifyContent: 'flex-end',
@@ -80,14 +79,20 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   divider: {
-    marginTop: 'auto', // Push the divider to the bottom
-    marginBottom: 0, // Remove the default margin from the divider
+    marginTop: 'auto',
+    marginBottom: 0,
+  },
+  iconBox: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 40,
+    height: 40,
   },
 }));
 
 const ContactPageCover = () => {
   const classes = useStyles();
-
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
     defaultMatches: true,
@@ -113,20 +118,57 @@ const ContactPageCover = () => {
               align="center"
             />
 
-            <div class="MuiTypography-root MuiListItemText-secondary MuiTypography-subtitle1 MuiTypography-colorTextPrimary MuiTypography-displayBlock">Connect with Chuck Fresco to explore his creative projects, collaborations, and more. Feel free to reach out for inquiries, opportunities, or just to say hello!</div>
-            <div style={{ paddingTop: '20px' }}> 
+            <div className="MuiTypography-root MuiListItemText-secondary MuiTypography-subtitle1 MuiTypography-colorTextPrimary MuiTypography-displayBlock">
+              Connect with Chuck Fresco to explore his projects, collaborations, and more. Feel free to reach out for inquiries, opportunities, or just to say hello!
+            </div>
+
+            <div style={{ paddingTop: '20px' }}>
               <List>
                 <ListItem disableGutters data-aos="fade-up">
                   <ListItemAvatar>
-                    <Avatar
-                      src="https://assets.maccarianagency.com/the-front/illustrations/contact-icon-mail.png"
-                      srcSet="https://assets.maccarianagency.com/the-front/illustrations/contact-icon-mail@2x.png 2x"
-                      className={classes.icon}
-                    />
+                    <Box className={classes.iconBox}>
+                      <FaEnvelope size={24} color="#7289da" />
+                    </Box>
                   </ListItemAvatar>
                   <ListItemText
                     primary="Email"
-                    secondary="contact@chuckfresco.com"
+                    secondary={
+                      <a
+                        href="mailto:contact@chuckfresco.com"
+                        style={{ color: '#ffffff', textDecoration: 'underline' }}
+                      >
+                        contact@chuckfresco.com
+                      </a>
+                    }
+                    primaryTypographyProps={{
+                      variant: 'subtitle1',
+                      color: 'textSecondary',
+                    }}
+                    secondaryTypographyProps={{
+                      variant: 'subtitle1',
+                      color: 'textPrimary',
+                    }}
+                  />
+                </ListItem>
+
+                <ListItem disableGutters data-aos="fade-up">
+                  <ListItemAvatar>
+                    <Box className={classes.iconBox}>
+                      <FaDiscord size={24} color="#7289da" />
+                    </Box>
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary="Discord"
+                    secondary={
+                      <a
+                        href="/discord"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ color: '#ffffff', textDecoration: 'underline' }}
+                      >
+                        https://chuckfresco.com/discord
+                      </a>
+                    }
                     primaryTypographyProps={{
                       variant: 'subtitle1',
                       color: 'textSecondary',

@@ -11,3 +11,5 @@ export { default as Search } from './Search';
 export { default as Team } from './Team';
 export { default as Trucking } from './Trucking';
 export { default as Video } from './Video';
+export { default as Products } from './Products';
+
