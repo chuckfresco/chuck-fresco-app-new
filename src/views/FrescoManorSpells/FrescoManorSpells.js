@@ -42,10 +42,26 @@ const useStyles = makeStyles(theme => ({
     margin: 0,
     width: '100%',
     maxWidth: '100%',
+    [theme.breakpoints.down('sm')]: {
+      paddingLeft: 5,
+      paddingRight: 5,
+      paddingTop: 5,
+    },
   },
-  reducedPadSection: {
-    paddingBottom: 10, 
-    paddingTop: 20, 
+
+  imagesSection: {
+    paddingLeft: 60,
+    paddingRight: 60,
+    paddingTop: 10, 
+    paddingBottom: 0, 
+    margin: 0,
+    width: '100%',
+    maxWidth: '190%',
+    [theme.breakpoints.down('sm')]: {
+      paddingLeft: 10,
+      paddingRight: 10,
+      paddingTop: 5,
+    },
   },
 }));
 
@@ -59,13 +75,13 @@ const FrescoManorSpells = () => {
         <meta name="description" content="Discover elite spells, monster drops, and magic workshops at Fresco Manor in Runiverse." />
         <meta property="og:title" content="Forgotten Runiverse | Best Mage Spells" />
         <meta property="og:description" content="Unlock powerful spells and explore our Mage Workshops in Runiverse!" />
-        <meta property="og:image" content="https://chuckfresco.com/assets/fresco-spells.jpg" />
-        <meta property="og:url" content="https://chuckfresco.com/fresco-manor-spells" />
+        <meta property="og:image" content="%PUBLIC_URL%/assets/social-runiverse.jpg" />
+        <meta property="og:url" content="https://chuckfresco.com/runiverse" />
       </Helmet>
 
       <Hero />
 
-      <Section className={classes.reducedPadSection}>
+      <Section className={classes.imagesSection}>
         <Products data={featuredProducts} />
       </Section>
 

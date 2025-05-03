@@ -16,14 +16,17 @@ import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Tooltip from '@material-ui/core/Tooltip';
+import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
 
 import {
-  materialNames,
+
   materialFilterMap,
   pastelColors,
-  materialsMonsterDrops,
   starThresholds,
-  workshops
+  workshops,
+  idDescriptors
 } from './data/spellData';
 
 const darkTheme = createTheme({
@@ -35,6 +38,42 @@ const darkTheme = createTheme({
     }
   }
 });
+
+const statDescriptions = {
+  Strength: `**Might** - Determines the Power of your Physical Spells.`,
+  Dexterity: `**Speed** - Determines how fast you act.<br />**Agility** - Determines your chance to dodge attacks.`,
+  Constitution: `**Mettle** - Determines the power of your shields.<br />**Durability** - Determines your resistance to Physical Attacks.<br />**Toughness** - Determines how much HP you have.`,
+  Intelligence: `**Brilliance** - Determines the Power of your Magical Spells.`,
+  Luck: `**Crit. Ch.** - Determines your Chance to deal critical damage.<br />**Crit. Dmg.** - Determines the power of your critical hits.`,
+  Wisdom: `**Grace** - Determines the power of your heals.<br />**Insight** - Determines your resistance to Magical Attacks.<br />**Resilience** - Determines your resistance to status effects.`
+};
+
+
+const addStatTooltips = (text) => {
+  const key = Object.keys(statDescriptions).find(
+    stat => stat.toLowerCase() === text.toLowerCase()
+  );
+
+  if (!key) return text;
+
+  return (
+    <Tooltip
+      title={
+        <ReactMarkdown rehypePlugins={[rehypeRaw]} components={{
+          strong: ({ children }) => <strong style={{ color: '#ffd700' }}>{children}</strong>
+        }}>
+          {statDescriptions[key]}
+        </ReactMarkdown>
+      }
+      arrow
+    >
+      <span style={{ borderBottom: "1px dotted #90caf9", cursor: "help", color: "#90caf9" }}>
+        {key}
+      </span>
+    </Tooltip>
+  );
+};
+
 
 const SpellsTable = () => {
   const [loading, setLoading] = useState(true);
@@ -62,50 +101,89 @@ const SpellsTable = () => {
 
   const applyFilters = (recipesList, term = searchTerm, stats = statFilters, color = activeColor) => {
     let filtered = [...recipesList];
-
+  
     if (color !== "All") {
       const materialId = materialFilterMap[color];
-      filtered = filtered.filter(item => item.materials.some(mat => mat.material === materialId));
+      filtered = filtered.filter(item =>
+        item.materials.some(mat => mat.material === materialId)
+      );
     }
-
+  
     if (term.trim()) {
       const terms = term.toLowerCase().split(",").map(t => t.trim()).filter(t => t);
       filtered = filtered.filter(item => {
         const itemText = [
           item.name,
           item.properties_crystal?.ability_properties?.description,
-          ...item.materials.map(mat => {
-            const id = String(mat.material).trim();
-            return materialsMonsterDrops[id] || materialNames[id] || '';
-          })
+          ...item.materials.map(mat => mat.resolvedName || '')
         ].join(" ").toLowerCase();
-    
-        // Check that every search term is included in the item text
         return terms.every(t => itemText.includes(t));
       });
     }
-
+  
     if (stats.length > 0) {
       filtered = filtered.filter(item =>
         stats.every(s => (item.properties_crystal?.stats?.[s] ?? 0) > 0)
       );
-    
+  
       const primary = stats[0];
       filtered.sort((a, b) => {
         const aStat = a.properties_crystal?.stats?.[primary] ?? 0;
         const bStat = b.properties_crystal?.stats?.[primary] ?? 0;
-    
-        // If stat values are equal, use cooldown to break tie
         if (bStat === aStat) {
           const aCooldown = a.properties_crystal?.ability_properties?.cooldown ?? 0;
           const bCooldown = b.properties_crystal?.ability_properties?.cooldown ?? 0;
-          return bCooldown - aCooldown; // higher cooldown first
+          return bCooldown - aCooldown;
         }
-    
         return bStat - aStat;
       });
-    }
+    } else {
+      // 👇 Custom sort logic based on color
+      if (color === "All") {
+        filtered.sort((a, b) => {
+            // Sort by tier first
+          const tierOrder = { "TIER II": 0, "TIER I": 1 }; // lower number = higher priority
+          const tierA = tierOrder[a.tier_text] ?? 99;
+          const tierB = tierOrder[b.tier_text] ?? 99;
+          if (tierA !== tierB) return tierA - tierB;
 
+          const starsA = a.station_data?.level ?? 0;
+          const starsB = b.station_data?.level ?? 0;
+          if (starsB !== starsA) return starsB - starsA;
+  
+          const remainingA = getRemainingToNextLevel(a.station_data?.total_inscriptions);
+          const remainingB = getRemainingToNextLevel(b.station_data?.total_inscriptions);
+          return remainingA - remainingB;
+        });
+      } else {
+
+        filtered.sort((a, b) => {
+          // Sort by tier first
+          const tierOrder = { "TIER II": 0, "TIER I": 1 };
+          const tierA = tierOrder[a.tier_text] ?? 99;
+          const tierB = tierOrder[b.tier_text] ?? 99;
+          if (tierA !== tierB) return tierA - tierB;
+        
+          // Sort by type (High/HighCantrip first)
+          const isHighA = ["High", "HighCantrip"].includes(a.type);
+          const isHighB = ["High", "HighCantrip"].includes(b.type);
+        
+          if (isHighA && !isHighB) return -1;
+          if (!isHighA && isHighB) return 1;
+        
+          // Sort by stars, then by remaining inscriptions
+          const starsA = a.station_data?.level ?? 0;
+          const starsB = b.station_data?.level ?? 0;
+          if (starsB !== starsA) return starsB - starsA;
+        
+          const remainingA = getRemainingToNextLevel(a.station_data?.total_inscriptions);
+          const remainingB = getRemainingToNextLevel(b.station_data?.total_inscriptions);
+          return remainingA - remainingB;
+        });
+        
+      }
+    }
+  
     setFilteredRecipes(filtered);
   };
 
@@ -119,20 +197,32 @@ const SpellsTable = () => {
   };
 
   useEffect(() => {
+    const flattenIdDescriptors = idDescriptors.flat();
+    const idDescriptorMap = flattenIdDescriptors.reduce((acc, item) => {
+      acc[item._id] = item.name;
+      return acc;
+    }, {});
+  
     const fetchAllWorkshops = async () => {
       const combinedMap = {};
       const requests = workshops.map(async (workshop) => {
         const res = await fetch("https://api.prod.runiverseservers.com/GetStationRecipeItems", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ id: workshop.id, requester_id: "42F016120A68386E", excluded_items: [], character_id: "A20ADB28F178CB58" })
+          body: JSON.stringify({
+            id: workshop.id,
+            requester_id: "42F016120A68386E",
+            excluded_items: [],
+            character_id: "A20ADB28F178CB58"
+          })
         });
         const data = await res.json();
         return data.map(item => ({ ...item, location: workshop.name }));
       });
-
+  
       const results = await Promise.all(requests);
       const allItems = results.flat();
+  
       for (const item of allItems) {
         const name = item.name;
         const level = item.station_data?.level ?? 0;
@@ -140,18 +230,32 @@ const SpellsTable = () => {
           combinedMap[name] = item;
         }
       }
-      const sorted = Object.values(combinedMap);
-      sorted.sort((a, b) => {
+      const enrichedItems = Object.values(combinedMap).map(item => ({
+        ...item,
+        materials: item.materials.map(mat => {
+          const descriptor = flattenIdDescriptors.find(d => d._id === mat.material);
+          return {
+            ...mat,
+            resolvedName: descriptor?.name || 'Unknown',
+            resolvedType: descriptor?.type || '',
+          };
+        })        
+
+      }));
+
+      enrichedItems.sort((a, b) => {
         const levelDiff = (b.station_data?.level ?? 0) - (a.station_data?.level ?? 0);
         if (levelDiff !== 0) return levelDiff;
         const aNext = getRemainingToNextLevel(a.station_data?.total_inscriptions);
         const bNext = getRemainingToNextLevel(b.station_data?.total_inscriptions);
         return aNext - bNext;
       });
-      setRecipes(sorted);
-      applyFilters(sorted);
+  
+      setRecipes(enrichedItems);
+      applyFilters(enrichedItems);
       setLoading(false);
     };
+  
     fetchAllWorkshops();
   }, []);
 
@@ -199,8 +303,13 @@ const SpellsTable = () => {
             <TableBody>
               {filteredRecipes.map((item, idx) => {
                 const isExpanded = expandedRows.includes(idx);
-                const gemMaterial = item.materials.find(mat => materialNames[mat.material]);
-                const otherMaterials = item.materials.filter(mat => !materialNames[mat.material]);
+                const gemMaterial = item.materials.find(mat =>
+                  ['gem', 'crystal'].includes(mat.resolvedType.toLowerCase())
+                );
+
+                const otherMaterials = item.materials.filter(mat =>
+                  !['gem', 'crystal'].includes(mat.resolvedType.toLowerCase())
+                );              
                 const isHigh = ["High", "HighCantrip"].includes(item.type);
                 return (
                   <React.Fragment key={idx}>
@@ -209,7 +318,15 @@ const SpellsTable = () => {
                       <TableCell><Avatar src={item.properties_crystal?.ability_properties?.icon} alt={item.name} variant="square" style={isHigh ? { border: "2px solid gold", boxShadow: "0 0 6px gold" } : {}} /></TableCell>
                       <TableCell>{item.name}</TableCell>
                       <TableCell>{renderStars(item.station_data?.level ?? 0)}</TableCell>
-                      <TableCell>{`Next LVL: ${getRemainingToNextLevel(item.station_data?.total_inscriptions ?? 0)}`}</TableCell>                      <TableCell style={{ whiteSpace: 'normal', wordWrap: 'break-word', maxWidth: 300 }}>{item.properties_crystal?.ability_properties?.description || "—"}</TableCell>
+                      <TableCell>
+                        {(item.station_data?.level ?? 0) === 5
+                          ? "COMPLETE"
+                          : `Next LVL: ${getRemainingToNextLevel(item.station_data?.total_inscriptions ?? 0)}`}
+                      </TableCell>
+
+
+
+                      <TableCell style={{ whiteSpace: 'normal', wordWrap: 'break-word', maxWidth: 300 }}>{item.properties_crystal?.ability_properties?.description || "—"}</TableCell>
                       <TableCell>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
                           <img src="/assets/gold-runiverse.png" alt="gold" style={{ width: '16px', height: '16px' }} />
@@ -218,7 +335,7 @@ const SpellsTable = () => {
                         {gemMaterial && (
                           <div style={{ display: "flex", alignItems: "center", gap: "4px", marginTop: 4 }}>
                             <Avatar src={gemMaterial.icon} alt="gem" style={{ width: 20, height: 20 }} />
-                            <span>{gemMaterial.amount}x {materialNames[gemMaterial.material]}</span>
+                            <span>{gemMaterial.amount}x {gemMaterial.resolvedName}</span>
                           </div>
                         )}
                       </TableCell>
@@ -226,7 +343,7 @@ const SpellsTable = () => {
                         {otherMaterials.map((mat, i) => (
                           <div key={i} style={{ display: "flex", alignItems: "center", gap: "4px", marginBottom: 2 }}>
                             <Avatar src={mat.icon} alt={mat.type} style={{ width: 20, height: 20 }} />
-                            <span>{mat.amount}x {materialsMonsterDrops[String(mat.material).trim()] || 'Unknown'}</span>
+                            <span>{mat.amount}x {mat.resolvedName}</span>
                           </div>
                         ))}
                       </TableCell>
@@ -259,9 +376,9 @@ const SpellsTable = () => {
                                       alignItems="center"
                                       mb={0.5}
                                     >
-                                      <strong style={{ minWidth: '80px', textTransform: 'capitalize' }}>
-                                        {stat}:
-                                      </strong>
+                                    <span style={{ minWidth: '80px' }}>
+                                      {addStatTooltips(stat)}:
+                                    </span>
                                       <span style={{ marginLeft: '16px' }}>
                                         {"★".repeat(value)}{"☆".repeat(3 - value)}
                                       </span>
